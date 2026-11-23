@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "memory-machine"
+version = "0.1.0"
+description = "A computational framework for studying episodic memory mechanisms."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Folarera Ayobami Kassim" }
+]
+dependencies = [
+  "numpy>=1.26"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0"
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
