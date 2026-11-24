@@ -1,5 +1,8 @@
 # The Memory Machine
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24475098.svg)](https://doi.org/10.5281/zenodo.24475098)
+
+
 A cognitive science and computational neuroscience research project investigating episodic memory, hippocampal pattern separation, pattern completion, and memory retrieval through computational modelling and controlled experiments.
 
 ## Research status
