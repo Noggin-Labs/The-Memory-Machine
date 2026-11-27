@@ -131,7 +131,11 @@ def make_substituted_cue(
         raise ValueError("substitution requires at least one inactive feature")
 
     removed = active[generator.random(active.size) < probability]
-    inserted = generator.choice(inactive, size=removed.size, replace=False)
+    inserted = (
+        generator.choice(inactive, size=removed.size, replace=False)
+        if removed.size
+        else np.array([], dtype=np.int64)
+    )
     cue = original.copy()
     cue[removed] = False
     cue[inserted] = True
