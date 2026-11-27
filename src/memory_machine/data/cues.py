@@ -38,11 +38,8 @@ class CueDegradation:
         returned fraction can be as high as 2.0. Missing-feature corruption
         changes one bit position per removed active feature.
         """
-        n_active = self.n_removed + int(self.cue.sum())
-        if self.mode == "substitution":
-            n_active = int(self.cue.sum())
-        # The denominator is reconstructed from the cue and edit metadata.
-        original_active = n_active + self.n_removed - self.n_inserted
+        # Recover original sparsity from cue sparsity and the recorded edits.
+        original_active = int(self.cue.sum()) + self.n_removed - self.n_inserted
         if original_active == 0:
             return 0.0
         return (self.n_removed + self.n_inserted) / original_active
