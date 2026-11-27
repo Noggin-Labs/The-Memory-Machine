@@ -65,10 +65,25 @@ def test_invalid_probability_rejected(function, keyword):
 
 
 def test_substitution_rejects_pattern_without_inactive_features():
+    pattern = np.ones(4, dtype=np.bool_)
     with pytest.raises(ValueError):
         make_substituted_cue(
-            np.ones(4, dtype=np.bool_), substitution_probability=0.5, seed=1
+            pattern, substitution_probability=0.5, seed=1
         )
+    unchanged = make_substituted_cue(
+        pattern, substitution_probability=0.0, seed=1
+    )
+    np.testing.assert_array_equal(unchanged.cue, pattern)
+
+
+def test_realized_corruption_fraction_uses_original_active_count():
+    pattern = np.array([True, False, True, False], dtype=np.bool_)
+    missing = make_missing_feature_cue(pattern, drop_probability=1.0, seed=2)
+    substituted = make_substituted_cue(
+        pattern, substitution_probability=1.0, seed=2
+    )
+    assert missing.realized_corruption_fraction == 1.0
+    assert substituted.realized_corruption_fraction == 2.0
 
 
 def test_pattern_validation():
