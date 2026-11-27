@@ -49,11 +49,9 @@ def test_seed_reproducibility():
 def test_supplied_generator_is_advanced():
     pattern = np.array([True, False, True, False, False], dtype=np.bool_)
     rng = np.random.default_rng(9)
-    a = make_missing_feature_cue(pattern, drop_probability=0.5, rng=rng)
-    b = make_missing_feature_cue(pattern, drop_probability=0.5, rng=rng)
-    assert a.removed_active_indices != b.removed_active_indices or not np.array_equal(
-        a.cue, b.cue
-    )
+    state_before = repr(rng.bit_generator.state)
+    make_missing_feature_cue(pattern, drop_probability=0.5, rng=rng)
+    assert repr(rng.bit_generator.state) != state_before
 
 
 @pytest.mark.parametrize("function, keyword", [
