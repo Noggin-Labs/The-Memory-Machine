@@ -28,6 +28,10 @@ The model is an experimental computational framework, not a claim that a simplif
 
 Encoding baselines and a fuller retrieval/reconstruction model remain under development. Proposed encoder definitions are documented separately and have not yet been treated as a locked experimental specification.
 
+## Manuscript
+
+The preliminary methods/framework manuscript is in [`manuscript/manuscript.md`](manuscript/manuscript.md). It distinguishes implemented software from proposed experiments and contains explicit literature-review placeholders; it is not a submission-ready paper.
+
 ## Development
 
 Install the project and development dependencies with:
